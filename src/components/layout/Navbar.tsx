@@ -15,9 +15,10 @@ const navLinks = [
   { label: 'Consultations', href: '/astrologers' },
   { label: 'Horoscope', href: '#' },
   { label: 'Free Services', href: '#' },
-  { label: 'Panchang', href: '#' },
+  { label: 'Panchang', href: '/panchang' },
   { label: 'Blog', href: '#' },
 ];
+
 
 export function Navbar() {
   const { user, isAuthenticated } = useAuthStore();
