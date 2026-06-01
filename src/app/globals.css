@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 36 100% 98%;        /* warm off-white #FFFBF5 */
+    --foreground: 234 100% 10%;       /* deep navy */
+    --card: 0 0% 100%;
+    --card-foreground: 234 100% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 234 100% 10%;
+    --primary: 24 95% 53%;            /* saffron orange #F97316 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 263 70% 50%;         /* deep purple #7C3AED */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 36 30% 95%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 36 100% 95%;
+    --accent-foreground: 24 95% 40%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 24 95% 53%;
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Chat bubbles */
+  .chat-bubble-user {
+    @apply bg-brand-orange text-white rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[70%] self-end shadow-sm;
+  }
+  .chat-bubble-astrologer {
+    @apply bg-white text-foreground rounded-2xl rounded-bl-sm px-4 py-2.5 max-w-[70%] self-start shadow-sm border border-border;
+  }
+
+  /* Section headings */
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-brand-navy;
+  }
+  .section-sub {
+    @apply text-muted-foreground text-lg mt-2;
+  }
+
+  /* Gradient backgrounds */
+  .hero-gradient {
+    background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 40%, #fdf4ff 100%);
+  }
+  .orange-gradient {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  }
+  .purple-gradient {
+    background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply flex flex-col items-center gap-1 px-6 py-4;
+  }
+
+  /* Astrologer card hover */
+  .astro-card {
+    @apply bg-white rounded-2xl border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden;
+  }
+
+  /* Online pulse */
+  .online-pulse::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-green-400 animate-pulse-ring;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+
+/* ─── Cosmic Astrolabe Animations ─── */
+@keyframes spin-cw {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes spin-ccw {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes sun-pulse {
+  0%, 100% {
+    box-shadow: 0 0 35px 8px rgba(249, 115, 22, 0.45), 0 0 70px 18px rgba(245, 158, 11, 0.25), inset 0 -4px 12px rgba(0, 0, 0, 0.15), inset 0 4px 12px rgba(255, 255, 255, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 55px 16px rgba(249, 115, 22, 0.65), 0 0 95px 28px rgba(245, 158, 11, 0.45), inset 0 -4px 12px rgba(0, 0, 0, 0.15), inset 0 4px 16px rgba(255, 255, 255, 0.85);
+    transform: scale(1.025);
+  }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.85); }
+  50% { opacity: 0.95; transform: scale(1.15); }
+}
+@keyframes pulse-planet {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px currentColor); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 10px currentColor); }
+}
+@keyframes float-cosmic {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.5deg); }
+}
+
+.animate-spin-cw {
+  animation: spin-cw 90s linear infinite;
+}
+.animate-spin-ccw {
+  animation: spin-ccw 75s linear infinite;
+}
+.animate-spin-cw-fast {
+  animation: spin-cw 45s linear infinite;
+}
+.animate-spin-cw-slow {
+  animation: spin-cw 135s linear infinite;
+}
+.animate-sun-pulse {
+  animation: sun-pulse 6s ease-in-out infinite;
+}
+.animate-star-twinkle {
+  animation: star-twinkle 3s ease-in-out infinite;
+}
+.animate-pulse-planet {
+  animation: pulse-planet 4s ease-in-out infinite;
+}
+.animate-float-cosmic {
+  animation: float-cosmic 8s ease-in-out infinite;
+}
+
+/* Pause animations when hovering on the cosmic-container */
+.cosmic-container:hover .animate-spin-cw,
+.cosmic-container:hover .animate-spin-ccw,
+.cosmic-container:hover .animate-spin-cw-fast,
+.cosmic-container:hover .animate-spin-cw-slow {
+  animation-play-state: paused;
+}
+
+.cosmic-container:hover .planet-glow {
+  filter: drop-shadow(0 0 16px currentColor) scale(1.15);
+  transition: all 0.5s ease-in-out;
+}
+
