@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { NotificationBell } from './NotificationBell';
 
 const navLinks = [
   { label: 'Consultations', href: '/astrologers' },
@@ -69,6 +70,7 @@ export function Navbar() {
                   <span className="hidden md:inline">Dashboard</span>
                 </Button>
               </Link>
+              <NotificationBell />
               <div className="flex items-center gap-2 pl-2 border-l border-border">
                 <Avatar className="h-8 w-8 border-2 border-brand-orange/30">
                   <AvatarFallback className="bg-brand-orange/10 text-brand-orange text-xs font-bold">

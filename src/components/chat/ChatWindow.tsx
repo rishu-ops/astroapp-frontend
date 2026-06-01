@@ -7,7 +7,8 @@ import { MessageBubble } from './MessageBubble';
 import { SessionTimer } from './SessionTimer';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, Loader2, PhoneOff, AlertCircle } from 'lucide-react';
+import { Send, Loader2, PhoneOff, AlertCircle, Gift } from 'lucide-react';
+import { OfferingRecommendPanel } from './OfferingRecommendPanel';
 import { useAuthStore } from '@/store/authStore';
 import { LoadingSpinner } from '../common/LoadingSpinner';
 import { Chat } from '@/types';
@@ -33,6 +34,8 @@ export function ChatWindow({ chatId, chat }: ChatWindowProps) {
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState('');
   const [endConfirm, setEndConfirm] = useState(false);
+  const [showOfferingPanel, setShowOfferingPanel] = useState(false);
+  const isAstrologer = user?.role === 'astrologer';
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -175,6 +178,24 @@ export function ChatWindow({ chatId, chat }: ChatWindowProps) {
             >
               {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
             </Button>
+
+            {/* Offering recommend — astrologer only */}
+            {isAstrologer && isActive && (
+              <div className="relative shrink-0">
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="border-brand-orange/40 text-brand-orange hover:bg-brand-orange/10"
+                  onClick={() => setShowOfferingPanel(!showOfferingPanel)}
+                  title="Recommend an Offering"
+                >
+                  <Gift className="h-4 w-4" />
+                </Button>
+                {showOfferingPanel && (
+                  <OfferingRecommendPanel chatId={chatId} onClose={() => setShowOfferingPanel(false)} />
+                )}
+              </div>
+            )}
 
             {/* End chat — user only */}
             {isOwner && isActive && !endConfirm && (

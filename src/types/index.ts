@@ -115,13 +115,24 @@ export interface Chat {
   updatedAt: string;
 }
 
+export interface OfferingSnapshot {
+  title: string;
+  thumbnail?: string;
+  price: number;
+  currency: string;
+  category: string;
+  slug: string;
+}
+
 export interface Message {
   _id: string;
   chatId: string;
   senderId: string;
   senderRole: 'user' | 'astrologer';
   message: string;
-  messageType: 'text';
+  messageType: 'text' | 'offering';
+  offeringSnapshot?: OfferingSnapshot;
+  offeringId?: string;
   isRead: boolean;
   createdAt: string;
 }
@@ -182,5 +193,128 @@ export interface AuditLog {
   reason?: string;
   previousValue?: Record<string, unknown>;
   newValue?: Record<string, unknown>;
+  createdAt: string;
+}
+
+export interface Offering {
+  _id: string;
+  astrologerId: string | Astrologer;
+  title: string;
+  slug: string;
+  category: string;
+  shortDescription: string;
+  description: string;
+  benefits: string[];
+  instructions: string[];
+  thumbnail?: string;
+  gallery: string[];
+  tags: string[];
+  price: number;
+  currency: string;
+  status: 'draft' | 'published' | 'archived';
+  reviewStatus: 'pending' | 'approved' | 'rejected';
+  rejectionReason?: string;
+  views: number;
+  saves: number;
+  createdAt: string;
+}
+
+export interface Review {
+  _id: string;
+  userId: User | string;
+  astrologerId: Astrologer | string;
+  consultationId: string;
+  rating: number;
+  review?: string;
+  createdAt: string;
+}
+
+export interface RatingDistribution {
+  1: number; 2: number; 3: number; 4: number; 5: number;
+  average: number;
+  total: number;
+}
+
+export interface Notification {
+  _id: string;
+  type: string;
+  title: string;
+  message: string;
+  data?: Record<string, unknown>;
+  isRead: boolean;
+  createdAt: string;
+}
+
+export interface Favorite {
+  _id: string;
+  userId: string;
+  type: 'astrologer' | 'offering';
+  targetId: Astrologer | Offering | string;
+  createdAt: string;
+}
+
+/* ─── Phase 2 Types ─── */
+
+export interface Offering {
+  _id: string;
+  astrologerId: string | Astrologer;
+  title: string;
+  slug: string;
+  category: string;
+  shortDescription: string;
+  description: string;
+  benefits: string[];
+  instructions: string[];
+  thumbnail?: string;
+  gallery: string[];
+  tags: string[];
+  price: number;
+  currency: string;
+  status: 'draft' | 'published' | 'archived';
+  reviewStatus: 'pending' | 'approved' | 'rejected';
+  rejectionReason?: string;
+  adminNotes?: string;
+  views: number;
+  saves: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Review {
+  _id: string;
+  userId: User | string;
+  astrologerId: Astrologer | string;
+  consultationId: string;
+  rating: number;
+  review?: string;
+  isVerified: boolean;
+  createdAt: string;
+}
+
+export interface RatingDistribution {
+  '1': number;
+  '2': number;
+  '3': number;
+  '4': number;
+  '5': number;
+  average: number;
+  total: number;
+}
+
+export interface Notification {
+  _id: string;
+  type: string;
+  title: string;
+  message: string;
+  data?: Record<string, unknown>;
+  isRead: boolean;
+  createdAt: string;
+}
+
+export interface Favorite {
+  _id: string;
+  userId: string;
+  type: 'astrologer' | 'offering';
+  targetId: Astrologer | Offering | string;
   createdAt: string;
 }
