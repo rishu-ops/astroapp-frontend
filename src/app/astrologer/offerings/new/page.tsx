@@ -32,17 +32,18 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>
 
-const CATEGORIES = [
-  "Vedic Astrology",
-  "Tarot Reading",
-  "Numerology",
-  "Palmistry",
-  "Vastu Shastra",
-  "Kundli Matching",
-  "Birth Chart Analysis",
-  "Career Guidance",
-  "Relationship Reading",
-  "Spiritual Healing",
+const CATEGORIES: { value: string; label: string }[] = [
+  { value: 'remedy', label: 'Remedy' },
+  { value: 'puja', label: 'Puja' },
+  { value: 'chadhava', label: 'Chadhava' },
+  { value: 'gemstone', label: 'Gemstone' },
+  { value: 'rudraksha', label: 'Rudraksha' },
+  { value: 'yantra', label: 'Yantra' },
+  { value: 'vastu', label: 'Vastu Shastra' },
+  { value: 'report', label: 'Astrology Report' },
+  { value: 'service', label: 'Spiritual Service' },
+  { value: 'digital_product', label: 'Digital Product' },
+  { value: 'other', label: 'Other' },
 ]
 
 export default function NewOfferingPage() {
@@ -108,7 +109,7 @@ export default function NewOfferingPage() {
     formData.append("description", data.description)
     formData.append("price", String(data.price))
     formData.append("currency", data.currency)
-    formData.append("status", isDraft ? "draft" : "pending_review")
+    formData.append("status", "draft")
 
     if (data.benefits && data.benefits.length > 0) {
       formData.append(
@@ -255,8 +256,8 @@ export default function NewOfferingPage() {
                   >
                     <option value="">Select a category</option>
                     {CATEGORIES.map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
+                      <option key={cat.value} value={cat.value}>
+                        {cat.label}
                       </option>
                     ))}
                   </select>
