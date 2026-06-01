@@ -195,6 +195,12 @@ export default function AstrologerDashboardPage() {
                 View Chats
               </Button>
             </Link>
+            <Link href="/astrologer/offerings">
+              <Button variant="outline" className="font-semibold gap-2">
+                <Star className="h-4 w-4" />
+                My Offerings
+              </Button>
+            </Link>
             <Link href="/astrologer/profile">
               <Button variant="outline" className="font-semibold gap-2">
                 <Star className="h-4 w-4" />

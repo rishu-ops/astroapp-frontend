@@ -14,8 +14,8 @@ import { NotificationBell } from './NotificationBell';
 
 const navLinks = [
   { label: 'Consultations', href: '/astrologers' },
-  { label: 'Horoscope', href: '#' },
-  { label: 'Free Services', href: '#' },
+  { label: 'Marketplace', href: '/marketplace' },
+  { label: 'Search', href: '/search' },
   { label: 'Panchang', href: '/panchang' },
   { label: 'Blog', href: '#' },
 ];

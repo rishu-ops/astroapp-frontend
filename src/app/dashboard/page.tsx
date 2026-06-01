@@ -57,17 +57,28 @@ export default function DashboardPage() {
           </div>
 
           {/* Quick actions */}
-          <div className="flex gap-3 mb-8">
+          <div className="flex gap-3 mb-8 flex-wrap">
             <Link href="/astrologers">
               <Button className="orange-gradient border-0 text-white font-semibold shadow-sm gap-2">
                 <Users className="h-4 w-4" />
                 Find Astrologer
               </Button>
             </Link>
+            <Link href="/marketplace">
+              <Button variant="outline" className="font-semibold gap-2">
+                <Star className="h-4 w-4" />
+                Marketplace
+              </Button>
+            </Link>
             <Link href="/dashboard/chat">
               <Button variant="outline" className="font-semibold gap-2">
                 <MessageCircle className="h-4 w-4" />
                 My Chats
+              </Button>
+            </Link>
+            <Link href="/favorites">
+              <Button variant="outline" className="font-semibold gap-2">
+                ♥ Favorites
               </Button>
             </Link>
           </div>

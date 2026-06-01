@@ -18,9 +18,9 @@ const STAT_CONFIG = [
 
 const QUICK_LINKS = [
   { label: 'Review Applications', desc: 'Approve or reject astrologer applications', href: '/admin/applications', color: 'border-l-amber-500' },
+  { label: 'Review Offerings', desc: 'Approve or reject marketplace offerings', href: '/admin/offerings', color: 'border-l-orange-500' },
   { label: 'Manage Users', desc: 'Block or unblock user accounts', href: '/admin/users', color: 'border-l-blue-500' },
   { label: 'Monitor Chats', desc: 'View all ongoing conversations', href: '/admin/chats', color: 'border-l-green-500' },
-  { label: 'Panchang Analytics', desc: 'View search volumes and city tracking stats', href: '/admin/panchang-analytics', color: 'border-l-purple-500' },
 ];
 
 

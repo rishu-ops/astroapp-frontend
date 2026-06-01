@@ -229,6 +229,26 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Marketplace CTA ─── */}
+      <section className="container py-16">
+        <div className="bg-gradient-to-br from-brand-orange/10 to-amber-50 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-6 border border-brand-orange/20">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-orange">Astrology Marketplace</span>
+            <h2 className="text-3xl font-extrabold text-brand-navy mt-2 mb-3">
+              Remedies, Pujas, Gemstones & More
+            </h2>
+            <p className="text-muted-foreground max-w-lg">
+              Explore curated offerings from verified astrologers — remedies, yantras, puja services, reports, and gemstones recommended for your chart.
+            </p>
+          </div>
+          <Link href="/marketplace" className="shrink-0">
+            <Button size="lg" className="orange-gradient border-0 text-white font-bold px-8 gap-2 shadow-lg">
+              Browse Marketplace <ArrowRight className="h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       {/* ─── Testimonials ─── */}
       <section className="container py-16">
         <div className="text-center mb-10">
